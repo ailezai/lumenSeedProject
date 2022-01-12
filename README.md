@@ -3,6 +3,7 @@
 - 打开`system/Sql`文件夹，依次执行`admin.sql`和`adminInit.sql`文件
 - 检查`.env`文件，补充相关配置信息
 - 检查`storage`文件夹权限，需要权限为777
+- conf指向public下index文件
 
 ### 项目使用说明
 - 使用工具获取授权码
