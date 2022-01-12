@@ -1,0 +1,141 @@
+<?php
+
+/**
+ * Created by CodeGenerate
+ * Version: v1.1
+ * User: CodeGenerate made by FRM
+ * TempleTime: 2018-6-14 15:44:45
+ * CreateTime: ${createTime}
+ */
+
+namespace ${controller_namespace};
+
+use ${service_namespace}\${service_className};
+use Illuminate\Http\Request;
+use Illuminate\View\View;
+use AiLeZai\Lumen\Framework\Http\Controllers\BaseController;
+
+class ${controller_className} extends BaseController
+{
+    /**
+     * @var ${service_className}
+     */
+    protected $${service_variableClassName};
+
+    /**
+     * ${controller_className} constructor.
+     *
+     * @param ${service_className} $${service_variableClassName}
+     */
+    public function __construct(${service_className} $${service_variableClassName})
+    {
+        $this->${service_variableClassName} = $${service_variableClassName};
+    }
+
+    /**
+     * 列表展示页
+     *
+     * @param Request $request
+     *
+     * @return View
+     */
+    public function index(Request $request)
+    {
+        $condition = [];
+        $list = $this->${service_variableClassName}->listPaginateByCondition($condition)->appends($request->all());
+        return view('${view_resource_point}.index')
+            ->with('request', $request)
+            ->with('list', $list);
+    }
+
+    /**
+     * 数据添加页
+     *
+     * @param Request $request
+     *
+     * @return View
+     */
+    public function addPage(Request $request)
+    {
+        return view('${view_resource_point}.addPage');
+    }
+
+    /**
+     * 数据编辑页
+     *
+     * @param Request $request
+     *
+     * @return View
+     */
+    public function editPage(Request $request)
+    {
+        $this->validate($request, [
+            "${primaryKey}" => "required|numeric",
+        ]);
+        $${humpPrimaryKey} = $request->input('${primaryKey}');
+
+        $${model_variableClassName} = $this->${service_variableClassName}->getBy${ucPrimaryKey}($${humpPrimaryKey});
+        return view('${view_resource_point}.editPage')
+            ->with('${model_variableClassName}', $${model_variableClassName});
+    }
+
+    /**
+     * 添加数据
+     *
+     * @param Request $request
+     *
+     * @return View
+     */
+    public function addSubmit(Request $request)
+    {
+        $this->validate($request, [
+${request_params}
+        ]);
+
+        $params = [];
+${controller_params}
+
+        $this->${service_variableClassName}->addSubmit($params);
+        return ajax_response()->ajaxSuccessResponse('数据已添加', [], 'reload');
+    }
+
+    /**
+     * 编辑数据
+     *
+     * @param Request $request
+     *
+     * @return View
+     */
+    public function editSubmit(Request $request)
+    {
+        $this->validate($request, [
+            "${primaryKey}" => "required|numeric",
+${request_params}
+        ]);
+
+        $${humpPrimaryKey} = $request->input('${primaryKey}');
+        $params = [];
+${controller_params}
+
+        $this->${service_variableClassName}->editSubmit($${humpPrimaryKey}, $params);
+        return ajax_response()->ajaxSuccessResponse('数据已编辑', [], 'reload');
+    }
+
+    /**
+     * 删除数据
+     *
+     * @param Request $request
+     *
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function delete(Request $request)
+    {
+        $this->validate($request, [
+            "${primaryKey}" => "required|numeric",
+        ]);
+        $${humpPrimaryKey} = $request->input('${primaryKey}');
+
+        $this->${service_variableClassName}->deleteBy${ucPrimaryKey}($${humpPrimaryKey});
+        return ajax_response()->ajaxSuccessResponse('数据已删除', [], 'reload');
+    }
+}

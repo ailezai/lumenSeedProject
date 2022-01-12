@@ -1,0 +1,7 @@
+/.idea
+/vendor
+/storage
+.env
+.env.loc
+composer.lock
+/app

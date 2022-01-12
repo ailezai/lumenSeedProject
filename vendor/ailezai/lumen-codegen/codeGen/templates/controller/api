@@ -1,0 +1,33 @@
+<?php
+
+/**
+ * Created by CodeGenerate
+ * Version: v1.1
+ * User: CodeGenerate made by FRM
+ * TempleTime: 2018-6-14 15:44:45
+ * CreateTime: ${createTime}
+ */
+
+namespace ${controller_namespace};
+
+use ${service_namespace}\${service_className};
+use Illuminate\Http\Request;
+use AiLeZai\Lumen\Framework\Http\Controllers\BaseController;
+
+class ${controller_className} extends BaseController
+{
+    /**
+     * @var ${service_className}
+     */
+    protected $${service_variableClassName};
+
+    /**
+     * ${controller_className} constructor.
+     *
+     * @param ${service_className} $${service_variableClassName}
+     */
+    public function __construct(${service_className} $${service_variableClassName})
+    {
+        $this->${service_variableClassName} = $${service_variableClassName};
+    }
+}

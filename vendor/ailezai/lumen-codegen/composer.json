@@ -1,0 +1,29 @@
+{
+    "name": "ailezai/lumen-codegen",
+    "description": "AiLeZai Lumen Code-generate.",
+    "keywords": ["AiLeZai", "Lumen", "Code-generate"],
+    "license": "MIT",
+    "type": "library",
+    "require": {
+        "php": ">=7.1.0",
+        "laravel/lumen-framework": "5.*",
+        "vlucas/phpdotenv": "~2.2"
+    },
+    "require-dev": {
+    },
+    "autoload": {
+        "psr-4": {
+            "AiLeZai\\Util\\Lumen\\CodeGen\\" : "src/"
+        }
+    },
+    "autoload-dev": {
+    },
+    "repositories": [
+        {
+            "type": "composer",
+            "url": "https://packagist.phpcomposer.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}

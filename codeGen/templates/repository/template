@@ -1,0 +1,141 @@
+<?php
+
+/**
+ * Created by CodeGenerate
+ * Version: v1.1
+ * User: CodeGenerate made by FRM
+ * TempleTime: 2018-6-14 15:44:45
+ * CreateTime: ${createTime}
+ */
+
+namespace ${repository_namespace};
+
+use ${model_namespace}\${model_className};
+use Illuminate\Contracts\Pagination\LengthAwarePaginator;
+use Illuminate\Database\Eloquent\Model;
+
+class ${repository_className}
+{
+    /**
+     * @var ${model_className}
+     */
+    protected $${model_variableClassName};
+
+    /**
+     * ${repository_className} constructor.
+     *
+     * @param ${model_className} $${model_variableClassName}
+     */
+    public function __construct(${model_className} $${model_variableClassName})
+    {
+        $this->${model_variableClassName} = $${model_variableClassName};
+    }
+
+    /**
+     * 返回空对象
+     *
+     * @return ${model_className}
+     */
+    public function getEmptyObject()
+    {
+        return $this->${model_variableClassName};
+    }
+
+    /**
+     * 根据主键${primaryKey}查找
+     *
+     * @param $${humpPrimaryKey}
+     *
+     * @return ${model_className}|null
+     */
+    public function getBy${ucPrimaryKey}($${humpPrimaryKey})
+    {
+        return $this->${model_variableClassName}
+            ->selectFullFields()
+            ->where('${primaryKey}', $${humpPrimaryKey})
+            ->first();
+    }
+
+    /**
+     * 根据filter过滤，分页查询
+     *
+     * @param array   $filter 过滤条件
+     * @param integer $size   分页大小
+     *
+     * @return LengthAwarePaginator
+     */
+    public function listPaginateByFilter($filter = [], $size = 20)
+    {
+        return $this->${model_variableClassName}
+            ->selectFullFields()
+            ->whereByFilter($filter)
+            ->paginate($size);
+    }
+
+    /**
+     * 创建数据
+     *
+     * @param array $data 新增字段
+     *
+     * @return ${model_className}
+     */
+    public function create(array $data)
+    {
+        return $this->${model_variableClassName}->create($data);
+    }
+
+    /**
+     * 创建数据或返回已存在数据
+     *
+     * @param array $attributes 比较字段
+     * @param array $joining    更新字段
+     *
+     * @return Model
+     */
+    public function firstOrCreate(array $attributes, array $joining)
+    {
+        return $this->${model_variableClassName}->firstOrCreate($attributes, $joining);
+    }
+
+    /**
+     * 根据主键${primaryKey}更新
+     *
+     * @param $${humpPrimaryKey}
+     * @param array $data        更新字段
+     *
+     * @return int
+     */
+    public function updateBy${ucPrimaryKey}($${humpPrimaryKey}, array $data)
+    {
+        return $this->${model_variableClassName}
+            ->where('${primaryKey}', $${humpPrimaryKey})
+            ->update($data);
+    }
+
+    /**
+     * 根据主键${primaryKey}更新或创建数据
+     *
+     * @param array $attributes    比较字段
+     * @param array $values        更新字段
+     *
+     * @return Model
+     */
+    public function updateOrCreate(array $attributes, array $values = [])
+    {
+        return $this->${model_variableClassName}->updateOrCreate($attributes, $values);
+    }
+
+    /**
+     * 根据主键${primaryKey}删除
+     *
+     * @param $${humpPrimaryKey}
+     *
+     * @return int
+     */
+    public function deleteBy${ucPrimaryKey}($${humpPrimaryKey})
+    {
+        return $this->${model_variableClassName}
+            ->where('${primaryKey}', $${humpPrimaryKey})
+            ->delete();
+    }
+}

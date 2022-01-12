@@ -1,0 +1,111 @@
+<?php
+
+/**
+ * Created by CodeGenerate
+ * Version: v1.1
+ * User: CodeGenerate made by FRM
+ * TempleTime: 2018-6-14 15:44:45
+ * CreateTime: ${createTime}
+ */
+
+namespace ${service_namespace};
+
+use ${model_namespace}\${model_className};
+use ${repository_namespace}\${repository_className};
+use AiLeZai\Lumen\Framework\Exceptions\DataNotFoundException;
+
+class ${service_className}
+{
+    /**
+     * @var ${repository_className}
+     */
+    protected $${repository_variableClassName};
+
+    /**
+     * ${service_className} constructor.
+     *
+     * @param ${repository_className} $${repository_variableClassName}
+     */
+    public function __construct(${repository_className} $${repository_variableClassName})
+    {
+        $this->${repository_variableClassName} = $${repository_variableClassName};
+    }
+
+    /**
+     * 分页展示列表
+     *
+     * @param array $condition
+     *
+     * @return \Illuminate\Contracts\Pagination\LengthAwarePaginator
+     */
+    public function listPaginateByCondition(array $condition = [])
+    {
+        $filter = $this->setFilter($condition);
+        $size = config('common.paginate.large');
+        return $this->${repository_variableClassName}->listPaginateByFilter($filter, $size);
+    }
+
+    /**
+     * 设置过滤条件
+     *
+     * @param array $condition  筛选条件
+     * @param array $filter     过滤数组
+     *
+     * @return array
+     */
+    private function setFilter(array $condition, array $filter = [])
+    {
+        return $filter;
+    }
+
+    /**
+     * 根据${primaryKey}获取数据
+     *
+     * @param ${primaryKeyType} $${humpPrimaryKey}
+     *
+     * @return ${model_className}|null
+     *
+     * @throws DataNotFoundException
+     */
+    public function getBy${ucPrimaryKey}($${humpPrimaryKey})
+    {
+        $${model_variableClassName} = $this->${repository_variableClassName}->getBy${ucPrimaryKey}($${humpPrimaryKey});
+        if (empty($${model_variableClassName})) {
+            throw new DataNotFoundException('数据不存在');
+        }
+        return $${model_variableClassName};
+    }
+
+    /**
+     * 创建数据信息
+     *
+     * @param array $params
+     */
+    public function addSubmit(array $params)
+    {
+        $this->${repository_variableClassName}->create($params);
+    }
+
+    /**
+     * 编辑数据信息
+     *
+     * @param ${primaryKeyType} $${humpPrimaryKey}
+     * @param array $params
+     */
+    public function editSubmit($${humpPrimaryKey}, array $params)
+    {
+        $this->${repository_variableClassName}->updateBy${ucPrimaryKey}($${humpPrimaryKey}, $params);
+    }
+
+    /**
+     * 根据${primaryKey}删除数据
+     *
+     * @param ${primaryKeyType} $${humpPrimaryKey}
+     *
+     * @return int
+     */
+    public function deleteBy${ucPrimaryKey}($${humpPrimaryKey})
+    {
+        return $this->${repository_variableClassName}->deleteBy${ucPrimaryKey}($${humpPrimaryKey});
+    }
+}

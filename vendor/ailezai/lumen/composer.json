@@ -1,0 +1,45 @@
+{
+    "name": "ailezai/lumen",
+    "description": "Lumen框架扩展",
+    "type": "library",
+    "keywords": ["Laravel", "Lumen", "AiLeZai"],
+    "homepage": "http://gitlab.ailezai.com/fengruiming/lumen",
+    "license": "MIT",
+    "require": {
+        "php": ">=7.0",
+        "laravel/lumen-framework": "5.4.*",
+        "vlucas/phpdotenv": "~2.2",
+        "illuminate/redis": "^5.4",
+        "illuminate/cookie": "^5.4",
+        "guzzlehttp/guzzle": "^6.3",
+        "ailezai/common-lib": "*"
+    },
+    "require-dev": {
+        "fzaninotto/faker": "~1.4",
+        "phpunit/phpunit": "~5.0",
+        "mockery/mockery": "~0.9"
+    },
+    "autoload": {
+        "files": [
+            "src/Supports/helpers.php"
+        ],
+        "psr-4": {
+            "AiLeZai\\Lumen\\Framework\\" : "src"
+        }
+    },
+    "repositories": [
+        {
+            "type": "composer",
+            "url": "http://composer.ailezai.com:8080"
+        },
+        {
+            "type": "composer",
+            "url": "https://packagist.phpcomposer.com"
+        }
+    ],
+    "archive": {
+        "exclude": [
+            "/tests"
+        ]
+    }
+}

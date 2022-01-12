@@ -1,0 +1,50 @@
+{
+	"name": "ailezai/common-lib",
+	"description": "PHP公共类/方法",
+	"type": "library",
+	"keywords": [
+		"CFG",
+		"LOG",
+		"MsgQ",
+		"Redis"
+	],
+	"homepage": "http://gitlab.ailezai.com/ailezai/common-lib",
+	"license": "MIT",
+	"require": {
+		"php": ">=7.1",
+		"php-amqplib/php-amqplib": "^2.7",
+		"monolog/monolog": "^1.0",
+		"guzzlehttp/guzzle": "^6.3",
+		"lcobucci/jwt": "^3.2"
+	},
+	"require-dev": {
+		"phpunit/phpunit": "^4.8"
+	},
+	"autoload": {
+		"psr-4": {
+			"AiLeZai\\Common\\Lib\\": "src"
+		}
+	},
+	"autoload-dev": {
+		"psr-4": {
+			"AiLeZai\\Common\\Lib\\": "tests"
+		}
+	},
+	"repositories": [
+		{
+			"type": "composer",
+			"url": "https://packagist.phpcomposer.com"
+		},
+		{
+			"packagist.org": false
+		}
+	],
+	"archive": {
+		"exclude": [
+			"/tests"
+		]
+	},
+	"config": {
+		"secure-http": false
+	}
+}

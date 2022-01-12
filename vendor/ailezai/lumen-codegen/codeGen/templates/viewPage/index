@@ -1,0 +1,125 @@
+@extends('layouts.app')
+
+@section('title', '${tableDesc}列表')
+
+@section('linksmiddle')
+    <link rel="stylesheet" href="{!! asset('css/plugins/footable/footable.core.css') !!}">
+@stop
+
+@section('content')
+    {{-- 操作&搜索&数据 --}}
+    <div class="wrapper wrapper-content animated fadeInRight ecommerce">
+        {{-- 操作 --}}
+            <div class="ibox-content m-b-sm border-bottom">
+                <a href="{{ auto_url('${view_route}/add_page') }}" class="btn btn-w-m btn-info">新增${tableDesc}</a>
+            </div>
+        {{-- 操作 --}}
+
+        {{-- 搜索 --}}
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <div class="ibox">
+                    <div class="ibox-title collapse-link">
+                        <h5>搜索</h5>
+                        <div class="ibox-tools">
+                            <a><i class="fa fa-chevron-up"></i></a>
+                        </div>
+                    </div>
+                    <div class="ibox-content">
+                        <form action="{{ auto_url($request->path()) }}" id="list-search-form" method="get">
+                            <div class="row">
+                                <div class="col-md-3 col-lg-3">
+                                    <div class="form-group">
+                                        <label class="font-bold" for="search-name">搜索</label>
+                                        <input class="form-control" id="search-name" name="name">
+                                    </div>
+                                </div>
+
+                                {{-- 搜索&清空 --}}
+                                <div class="col-md-3 col-lg-3 pull-right">
+                                    <div class="form-group pull-right">
+                                        <label class="font-bold"></label>
+                                        <div>
+                                            <button type="submit" class="btn btn-w-m btn-primary">搜索</button>&nbsp;
+                                            <a href="{{ auto_url($request->path()) }}" class="btn btn-w-m btn-default">清空</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                {{-- /搜索&清空 --}}
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {{-- 搜索 --}}
+
+        {{-- 数据 --}}
+        <div class="row">
+            <div class="col-md-12 col-lg-12">
+                <div class="ibox">
+                    <div class="ibox-content">
+                        {{-- table --}}
+                        <table class="footable table table-stripped toggle-arrow-tiny">
+                            <thead>
+                            <tr>
+${table_title}
+                            </tr>
+                            </thead>
+                            <tbody>
+                            @if(count($list) == 0)
+                                <tr><td colspan="100" style="text-align:center">暂无数据</td></tr>
+                            @else
+                                @foreach($list as $item)
+                                    <tr>
+${table_content}
+                                    </tr>
+                                @endforeach
+                            @endif
+                            </tbody>
+                            <tfoot>
+                            @if(is_object($list)
+                                && ($list instanceof \Illuminate\Pagination\Paginator
+                                    || $list instanceof \Illuminate\Pagination\LengthAwarePaginator))
+                                <tr>
+                                    <td colspan="20">
+                                        <ul class="pull-right">
+                                            每页{{ $list->perPage() }}条，当前页{{ $list->count() }}条，共{{ $list->total() }}条
+                                            {{ $list }}
+                                        </ul>
+                                    </td>
+                                </tr>
+                            @endif
+                            </tfoot>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {{-- 数据 --}}
+@stop
+
+@section('scripts')
+    {{-- Jquery Validate --}}
+    <script src="{!! asset('js/plugins/validate/jquery.validate.min.js') !!}"></script>
+    <script src="{!! asset('js/plugins/validate/jquery.validate.zh-CN.min.js') !!}"></script>
+    {{-- FooTable --}}
+    <script src="{!! asset('js/plugins/footable/footable.all.min.js') !!}"></script>
+
+    <script>
+        $(function () {
+            $("#list-search-form").validate({
+                rules: {
+
+                }
+            });
+
+            // footable配置
+            $('.footable').footable({
+                "paginate": false,
+                "sort": false
+            });
+        });
+    </script>
+@stop

@@ -1,0 +1,67 @@
+{
+    "name": "ailezai/lumen-admin",
+    "description": "基于Lumen的Admin项目",
+    "type": "project",
+    "keywords": ["Laravel", "Lumen", "aiLeZai", "Admin"],
+    "homepage": "http://gitlab.ailezai.com/ailezai/lumen-admin",
+    "license": "MIT",
+    "require": {
+        "php": ">=7.0",
+        "guzzlehttp/guzzle": "^6.3",
+        "illuminate/cookie": "^5.4",
+        "illuminate/redis": "^5.4",
+        "ailezai/common-lib": "*",
+        "ailezai/lumen": "*",
+        "ailezai/lumen-codegen": "^1.1",
+        "laravel/lumen-framework": "5.4.*",
+        "vlucas/phpdotenv": "~2.2"
+    },
+    "require-dev": {
+        "fzaninotto/faker": "~1.4",
+        "phpunit/phpunit": "~5.0",
+        "mockery/mockery": "~0.9"
+    },
+    "autoload": {
+        "files": [
+            "app/Supports/helpers.php",
+            "system/Supports/system_helpers.php"
+        ],
+        "psr-4": {
+            "App\\": "app/",
+            "System\\": "system/"
+        }
+    },
+    "autoload-dev": {
+        "classmap": [
+            "tests/",
+            "database/"
+        ]
+    },
+    "scripts": {
+        "post-root-package-install": [
+            "@php -r \"file_exists('.env') || copy('.env.example', '.env');\""
+        ],
+        "post-create-project-cmd": [
+            "@php artisan env:init"
+        ]
+    },
+    "repositories": [
+        {
+            "type": "composer",
+            "url": "http://composer.ailezai.com:8080"
+        },
+        {
+            "type": "composer",
+            "url": "https://packagist.phpcomposer.com"
+        },
+        {
+            "packagist.org": false
+        }
+    ],
+    "config": {
+        "preferred-install": "dist",
+        "sort-packages": true,
+        "optimize-autoloader": true,
+        "secure-http": false
+    }
+}

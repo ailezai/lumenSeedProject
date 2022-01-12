@@ -1,0 +1,7 @@
+/.*project
+/.buildpath
+/.settings
+/.idea
+/.phpintel
+composer.lock
+/vendor
